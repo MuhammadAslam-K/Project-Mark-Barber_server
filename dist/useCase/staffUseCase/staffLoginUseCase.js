@@ -13,7 +13,7 @@ exports.default = {
                 const checkPassword = await encriptionDecription_1.default.comparePassword(data.password, staffExistes.password);
                 if (checkPassword) {
                     if (staffExistes.adminApproved) {
-                        if (staffExistes.block) {
+                        if (staffExistes.blocked) {
                             throw new Error("Your Account had been blocked by Admin");
                         }
                         else {

@@ -10,7 +10,7 @@ export default {
                 const checkPassword = await encriptionDecription.comparePassword(data.password, staffExistes.password)
                 if (checkPassword) {
                     if (staffExistes.adminApproved) {
-                        if (staffExistes.block) {
+                        if (staffExistes.blocked) {
                             throw new Error("Your Account had been blocked by Admin")
                         } else {
                             const token = encriptionDecription.createToken(staffExistes._id as ObjectId, "staff", "5h");
