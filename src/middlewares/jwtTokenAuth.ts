@@ -9,6 +9,9 @@ export default {
             const requestedRoute = req.path;
             console.log("path :", requestedRoute)
             const publicRoutes = [
+                /**********  User **********/
+                "/saloan/nearest",
+                "/saloan/all",
                 /**********  Driver **********/
                 "/staff/login",
                 "/staff/signup",

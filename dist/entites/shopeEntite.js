@@ -1,4 +1,5 @@
 "use strict";
+// import mongoose, { Schema } from "mongoose";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -23,28 +24,54 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+// const shopeSchema: Schema = new Schema({
+//     shopeName: { type: String, required: true },
+//     ownerName: { type: String, required: true },
+//     ownerEmail: { type: String, required: true },
+//     ownerMobile: { type: String, required: true },
+//     location: {
+//         type: {
+//             type: String,
+//             enum: ['Point'],
+//             default: 'Point',
+//         },
+//         coordinates: {
+//             type: [Number],
+//             required: true,
+//         },
+//     },
+//     shopeLocation: { type: String, required: true },
+//     services: { type: String, required: true },
+//     images: [{ type: String, required: true, }],
+//     listedDate: { type: Date, default: Date.now },
+//     staff_Id: { type: String, required: true }
+// })
+// const ShopeSchema = mongoose.model("shope", shopeSchema)
+// export default ShopeSchema
 const mongoose_1 = __importStar(require("mongoose"));
 const shopeSchema = new mongoose_1.Schema({
     shopeName: { type: String, required: true },
     ownerName: { type: String, required: true },
     ownerEmail: { type: String, required: true },
     ownerMobile: { type: String, required: true },
-    shopeCoordinates: {
-        latitude: {
-            type: Number,
+    location: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            default: 'Point',
         },
-        longitude: {
-            type: Number,
+        coordinates: {
+            type: [Number],
+            required: true,
         },
     },
     shopeLocation: { type: String, required: true },
     services: { type: String, required: true },
-    Image1: { type: String, required: true },
-    Image2: { type: String, required: true },
-    Image3: { type: String, required: true },
-    Image4: { type: String, required: true },
+    images: [{ type: String, required: true }],
     listedDate: { type: Date, default: Date.now },
     staff_Id: { type: String, required: true }
 });
+// Create a 2dsphere index on the location field for geospatial queries
+shopeSchema.index({ location: "2dsphere" });
 const ShopeSchema = mongoose_1.default.model("shope", shopeSchema);
 exports.default = ShopeSchema;
