@@ -4,6 +4,9 @@ import cors from 'cors';
 
 
 import connect from './config/mongoDB';
+import jwtTokenAuth from './middlewares/jwtTokenAuth';
+import staff_router from './interfaces/router/staffRoutes';
+import admin_router from './interfaces/router/adminRoutes';
 
 
 dotenv.config();
@@ -11,25 +14,18 @@ dotenv.config();
 const port = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 const app = Express();
-app.use(cors());
+// app.use(cors());
 app.use(Express.json({ limit: '10mb' }));
 
-const allowedOrigins = [process.env.FRONT_END];
-app.use(
-    cors({
-        origin: function (origin: any, callback: any) {
-            if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-                callback(null, true);
-            } else {
-                callback(new Error('Not allowed by CORS'));
-            }
-        },
-        credentials: true,
-    }
-    )
-)
-// app.use(jwtTokenAuth.validateToken);
+app.use(cors({
+    origin: '*',
+    credentials: true,
+}));
 
+
+app.use(jwtTokenAuth.validateToken);
+app.use("/staff", staff_router)
+app.use("/admin", admin_router)
 
 
 if (MONGO_URL) {
