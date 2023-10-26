@@ -7,6 +7,7 @@ import connect from './config/mongoDB';
 import jwtTokenAuth from './middlewares/jwtTokenAuth';
 import staff_router from './interfaces/router/staffRoutes';
 import admin_router from './interfaces/router/adminRoutes';
+import user_route from './interfaces/router/userRoutes';
 
 
 dotenv.config();
@@ -24,6 +25,8 @@ app.use(cors({
 
 
 app.use(jwtTokenAuth.validateToken);
+
+app.use('/', user_route)
 app.use("/staff", staff_router)
 app.use("/admin", admin_router)
 

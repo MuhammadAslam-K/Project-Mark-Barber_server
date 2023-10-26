@@ -9,8 +9,11 @@ exports.default = {
         try {
             const shop = new shopeEntite_1.default({
                 ...data,
-                'shopeCoordinates.latitude': data.shoplatitude,
-                'shopeCoordinates.longitude': data.shoplongitude,
+                location: {
+                    type: 'Point',
+                    coordinates: [data.shoplongitude, data.shoplatitude],
+                },
+                images: [data.Image1, data.Image2, data.Image3, data.Image4],
                 staff_Id,
             });
             await shop.save();

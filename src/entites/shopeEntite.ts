@@ -1,3 +1,37 @@
+// import mongoose, { Schema } from "mongoose";
+
+// const shopeSchema: Schema = new Schema({
+//     shopeName: { type: String, required: true },
+//     ownerName: { type: String, required: true },
+//     ownerEmail: { type: String, required: true },
+//     ownerMobile: { type: String, required: true },
+
+//     location: {
+//         type: {
+//             type: String,
+//             enum: ['Point'],
+//             default: 'Point',
+//         },
+//         coordinates: {
+//             type: [Number],
+//             required: true,
+//         },
+//     },
+
+//     shopeLocation: { type: String, required: true },
+//     services: { type: String, required: true },
+//     images: [{ type: String, required: true, }],
+//     listedDate: { type: Date, default: Date.now },
+//     staff_Id: { type: String, required: true }
+
+
+// })
+
+// const ShopeSchema = mongoose.model("shope", shopeSchema)
+
+// export default ShopeSchema
+
+
 import mongoose, { Schema } from "mongoose";
 
 const shopeSchema: Schema = new Schema({
@@ -5,29 +39,27 @@ const shopeSchema: Schema = new Schema({
     ownerName: { type: String, required: true },
     ownerEmail: { type: String, required: true },
     ownerMobile: { type: String, required: true },
-
-    shopeCoordinates: {
-        latitude: {
-            type: Number,
+    location: {
+        type: {
+            type: String,
+            enum: ['Point'],
+            default: 'Point',
         },
-        longitude: {
-            type: Number,
+        coordinates: {
+            type: [Number],
+            required: true,
         },
     },
-
     shopeLocation: { type: String, required: true },
     services: { type: String, required: true },
-    Image1: { type: String, required: true },
-    Image2: { type: String, required: true },
-    Image3: { type: String, required: true },
-    Image4: { type: String, required: true },
-
+    images: [{ type: String, required: true }],
     listedDate: { type: Date, default: Date.now },
     staff_Id: { type: String, required: true }
+});
 
+// Create a 2dsphere index on the location field for geospatial queries
+shopeSchema.index({ location: "2dsphere" });
 
-})
+const ShopeSchema = mongoose.model("shope", shopeSchema);
 
-const ShopeSchema = mongoose.model("shope", shopeSchema)
-
-export default ShopeSchema
+export default ShopeSchema;

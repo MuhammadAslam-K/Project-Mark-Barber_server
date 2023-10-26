@@ -33,6 +33,7 @@ const mongoDB_1 = __importDefault(require("./config/mongoDB"));
 const jwtTokenAuth_1 = __importDefault(require("./middlewares/jwtTokenAuth"));
 const staffRoutes_1 = __importDefault(require("./interfaces/router/staffRoutes"));
 const adminRoutes_1 = __importDefault(require("./interfaces/router/adminRoutes"));
+const userRoutes_1 = __importDefault(require("./interfaces/router/userRoutes"));
 dotenv.config();
 const port = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
@@ -44,6 +45,7 @@ app.use((0, cors_1.default)({
     credentials: true,
 }));
 app.use(jwtTokenAuth_1.default.validateToken);
+app.use('/', userRoutes_1.default);
 app.use("/staff", staffRoutes_1.default);
 app.use("/admin", adminRoutes_1.default);
 if (MONGO_URL) {

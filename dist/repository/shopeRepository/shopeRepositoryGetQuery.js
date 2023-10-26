@@ -15,7 +15,37 @@ exports.default = {
     },
     getShopWithStaffId: async (staffId) => {
         try {
-            return await shopeEntite_1.default.find({ staff_id: staffId });
+            return await shopeEntite_1.default.find({ staff_Id: staffId });
+        }
+        catch (error) {
+            throw new Error(error.message);
+        }
+    },
+    findNearestByUserLatAndLong: async (latitude, longitude, radius) => {
+        try {
+            if (isNaN(latitude) || isNaN(longitude)) {
+                throw new Error('Invalid latitude or longitude values');
+            }
+            const nearbyShops = await shopeEntite_1.default.find({
+                location: {
+                    $near: {
+                        $geometry: {
+                            type: 'Point',
+                            coordinates: [longitude, latitude],
+                        },
+                        $maxDistance: radius,
+                    },
+                },
+            });
+            return nearbyShops;
+        }
+        catch (error) {
+            throw new Error(error.message);
+        }
+    },
+    getAllShopes: async () => {
+        try {
+            return shopeEntite_1.default.find();
         }
         catch (error) {
             throw new Error(error.message);

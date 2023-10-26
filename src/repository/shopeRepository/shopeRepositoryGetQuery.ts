@@ -13,7 +13,39 @@ export default {
 
     getShopWithStaffId: async (staffId: ObjectId) => {
         try {
-            return await ShopeSchema.find({ staff_id: staffId })
+            return await ShopeSchema.find({ staff_Id: staffId })
+        } catch (error) {
+            throw new Error((error as Error).message);
+        }
+    },
+
+    findNearestByUserLatAndLong: async (latitude: number, longitude: number, radius: number) => {
+        try {
+            if (isNaN(latitude) || isNaN(longitude)) {
+                throw new Error('Invalid latitude or longitude values');
+            }
+
+            const nearbyShops = await ShopeSchema.find({
+                location: {
+                    $near: {
+                        $geometry: {
+                            type: 'Point',
+                            coordinates: [longitude, latitude],
+                        },
+                        $maxDistance: radius,
+                    },
+                },
+            })
+
+            return nearbyShops;
+        } catch (error) {
+            throw new Error((error as Error).message);
+        }
+    },
+
+    getAllShopes: async () => {
+        try {
+            return ShopeSchema.find()
         } catch (error) {
             throw new Error((error as Error).message);
         }
