@@ -8,9 +8,13 @@
     "strict": true
   },
   "include": [
-    "src/**/*.ts"
+    "src",
+    "src/config",
+    "../entites",
+    "custome.d.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.spec.ts"
   ]
 }

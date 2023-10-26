@@ -26,33 +26,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
-const cors_1 = __importDefault(require("cors"));
-const mongoDB_1 = __importDefault(require("./config/mongoDB"));
-const jwtTokenAuth_1 = __importDefault(require("./middlewares/jwtTokenAuth"));
-const staffRoutes_1 = __importDefault(require("./interfaces/router/staffRoutes"));
-const adminRoutes_1 = __importDefault(require("./interfaces/router/adminRoutes"));
+const encriptionDecription_1 = __importDefault(require("../../services/encriptionDecription"));
 dotenv.config();
-const port = process.env.PORT;
-const MONGO_URL = process.env.MONGO_URL;
-const app = (0, express_1.default)();
-// app.use(cors());
-app.use(express_1.default.json({ limit: '10mb' }));
-app.use((0, cors_1.default)({
-    origin: '*',
-    credentials: true,
-}));
-app.use(jwtTokenAuth_1.default.validateToken);
-app.use("/staff", staffRoutes_1.default);
-app.use("/admin", adminRoutes_1.default);
-if (MONGO_URL) {
-    (0, mongoDB_1.default)(MONGO_URL).then(() => {
-        app.listen(port, () => console.log(`Server started at http://localhost:${port}`));
-    }).catch((err) => {
-        console.error('MongoDB connection error:', err);
-    });
-}
-else {
-    console.log('Cannot access the URL from environment');
-}
+exports.default = {
+    validateAdmin: async (data) => {
+        try {
+            const adminEmail = process.env.ADMIN_EMAIL;
+            const adminPassword = process.env.ADMIN_PASSWORD;
+            if (data.email == adminEmail && data.password == adminPassword) {
+                const token = encriptionDecription_1.default.createToken(data.email, "admin", "5h");
+                return token;
+            }
+            else {
+                throw new Error("Unautherized");
+            }
+        }
+        catch (error) {
+            throw new Error(error.message);
+        }
+    }
+};
