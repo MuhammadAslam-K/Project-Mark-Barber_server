@@ -23,7 +23,21 @@ export default {
             }
         } catch (error) {
             throw new Error((error as Error).message);
+        }
+    },
 
+    updateTotalSopNo: async (staffId: ObjectId) => {
+        try {
+            const staff = await StaffSchema.findById(staffId)
+            if (staff) {
+                const count = staff.totalShops
+                staff.totalShops = count + 1
+                return await staff.save()
+            }
+
+
+        } catch (error) {
+            throw new Error((error as Error).message);
         }
     }
 }

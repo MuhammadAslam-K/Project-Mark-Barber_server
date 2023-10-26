@@ -47,7 +47,7 @@ export default {
 
     encryptData: (data: string | ObjectId, expireIn: string): string => {
         try {
-            const secretKey = process.env.SECRET_KEY || ""
+            const secretKey = "JkChTjrw8N4z2D83h3geiNM7qfRtcZRU0isSgNgq"
 
             const payload = {
                 payload: data,
@@ -68,13 +68,14 @@ export default {
 
     decryptdata: (data: string) => {
         try {
-            const secretKey = process.env.SECRET_KEY || ""
+            const secretKey = "JkChTjrw8N4z2D83h3geiNM7qfRtcZRU0isSgNgq"
 
             const decodedToken = jwt.verify(data, secretKey) as JwtPayload;
 
             return decodedToken
         }
         catch (error) {
+            console.log("error in decoding", error)
             throw new Error((error as Error).message)
         }
     }

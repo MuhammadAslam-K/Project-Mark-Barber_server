@@ -33,13 +33,12 @@ export default {
 
             const decodedToken = encriptionDecription.decryptdata(token)
 
-
             if (decodedToken.role === 'admin') {
-                req.token = decodedToken.data;
+                req.token = decodedToken
                 next();
             } else if (decodedToken.role === 'staff') {
 
-                req.token = decodedToken.data;
+                req.token = decodedToken
                 next();
             }
             else {
