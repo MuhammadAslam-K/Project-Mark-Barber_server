@@ -39,5 +39,14 @@ exports.default = {
         catch (error) {
             throw new Error(error.message);
         }
+    },
+    getCountOfShopByStaffId: async (staffId) => {
+        try {
+            const result = await staffEntite_1.default.findById(staffId);
+            return result ? result.totalShops : 0;
+        }
+        catch (error) {
+            throw new Error(error.message);
+        }
     }
 };

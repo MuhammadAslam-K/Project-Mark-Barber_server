@@ -24,5 +24,18 @@ exports.default = {
         catch (error) {
             throw new Error(error.message);
         }
+    },
+    updateTotalSopNo: async (staffId) => {
+        try {
+            const staff = await staffEntite_1.default.findById(staffId);
+            if (staff) {
+                const count = staff.totalShops;
+                staff.totalShops = count + 1;
+                return await staff.save();
+            }
+        }
+        catch (error) {
+            throw new Error(error.message);
+        }
     }
 };

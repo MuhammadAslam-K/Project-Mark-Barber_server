@@ -1,3 +1,4 @@
+import { ObjectId } from "mongoose"
 import StaffSchema from "../../entites/staffEntite"
 
 export default {
@@ -33,6 +34,16 @@ export default {
             return await StaffSchema.find().count()
         } catch (error) {
             throw new Error((error as Error).message)
+        }
+    },
+
+    getCountOfShopByStaffId: async (staffId: ObjectId) => {
+        try {
+            const result = await StaffSchema.findById(staffId)
+            return result ? result.totalShops : 0
+        } catch (error) {
+            throw new Error((error as Error).message);
+
         }
     }
 }

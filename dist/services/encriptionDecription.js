@@ -42,7 +42,7 @@ exports.default = {
     },
     encryptData: (data, expireIn) => {
         try {
-            const secretKey = process.env.SECRET_KEY || "";
+            const secretKey = "JkChTjrw8N4z2D83h3geiNM7qfRtcZRU0isSgNgq";
             const payload = {
                 payload: data,
             };
@@ -59,11 +59,12 @@ exports.default = {
     },
     decryptdata: (data) => {
         try {
-            const secretKey = process.env.SECRET_KEY || "";
+            const secretKey = "JkChTjrw8N4z2D83h3geiNM7qfRtcZRU0isSgNgq";
             const decodedToken = jsonwebtoken_1.default.verify(data, secretKey);
             return decodedToken;
         }
         catch (error) {
+            console.log("error in decoding", error);
             throw new Error(error.message);
         }
     }
