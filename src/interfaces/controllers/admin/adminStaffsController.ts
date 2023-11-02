@@ -3,25 +3,19 @@ import adminStaffsUseCase from "../../../useCase/adminUseCase/adminStaffsUseCase
 
 
 export default {
-    getApprovedStaffs: async (req: Request, res: Response) => {
+    getStaffs: async (req: Request, res: Response) => {
         try {
-            res.json(await adminStaffsUseCase.getApprovedStaffs())
+            res.json(await adminStaffsUseCase.getStaffs())
         } catch (error) {
             res.status(500).json({ error: (error as Error).message })
         }
     },
 
-    getNotApprovedStaffs: async (req: Request, res: Response) => {
-        try {
-            res.json(await adminStaffsUseCase.getNotApprovedStaffs())
-        } catch (error) {
-            res.status(500).json({ error: (error as Error).message })
-        }
-    },
 
     approveStaff: async (req: Request, res: Response) => {
         try {
-            res.json(await adminStaffsUseCase.approveStaff(req.body.staffId))
+            const staffId = req.query.id as string
+            res.json(await adminStaffsUseCase.approveStaff(staffId))
         } catch (error) {
             res.status(500).json({ error: (error as Error).message })
         }
@@ -29,7 +23,8 @@ export default {
 
     blockUnblockStaff: async (req: Request, res: Response) => {
         try {
-            res.json(await adminStaffsUseCase.blockUnblockStaff(req.body.staffId))
+            const staffId = req.query.id as string
+            res.json(await adminStaffsUseCase.blockUnblockStaff(staffId))
         } catch (error) {
             res.status(500).json({ error: (error as Error).message })
         }

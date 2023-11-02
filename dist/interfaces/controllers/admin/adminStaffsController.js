@@ -5,17 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const adminStaffsUseCase_1 = __importDefault(require("../../../useCase/adminUseCase/adminStaffsUseCase"));
 exports.default = {
-    getApprovedStaffs: async (req, res) => {
+    getStaffs: async (req, res) => {
         try {
-            res.json(await adminStaffsUseCase_1.default.getApprovedStaffs());
-        }
-        catch (error) {
-            res.status(500).json({ error: error.message });
-        }
-    },
-    getNotApprovedStaffs: async (req, res) => {
-        try {
-            res.json(await adminStaffsUseCase_1.default.getNotApprovedStaffs());
+            res.json(await adminStaffsUseCase_1.default.getStaffs());
         }
         catch (error) {
             res.status(500).json({ error: error.message });
@@ -23,7 +15,8 @@ exports.default = {
     },
     approveStaff: async (req, res) => {
         try {
-            res.json(await adminStaffsUseCase_1.default.approveStaff(req.body.staffId));
+            const staffId = req.query.id;
+            res.json(await adminStaffsUseCase_1.default.approveStaff(staffId));
         }
         catch (error) {
             res.status(500).json({ error: error.message });
@@ -31,7 +24,8 @@ exports.default = {
     },
     blockUnblockStaff: async (req, res) => {
         try {
-            res.json(await adminStaffsUseCase_1.default.blockUnblockStaff(req.body.staffId));
+            const staffId = req.query.id;
+            res.json(await adminStaffsUseCase_1.default.blockUnblockStaff(staffId));
         }
         catch (error) {
             res.status(500).json({ error: error.message });

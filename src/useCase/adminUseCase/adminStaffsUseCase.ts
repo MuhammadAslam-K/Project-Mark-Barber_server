@@ -3,23 +3,20 @@ import staffRepositoryGetQuery from "../../repository/staffRepository/staffRepos
 import staffRepositoryUpdateQuery from "../../repository/staffRepository/staffRepositoryUpdateQuery"
 
 export default {
-    getApprovedStaffs: async () => {
+    getStaffs: async () => {
         try {
-            return await staffRepositoryGetQuery.getApprovedStaffs()
+            const staffs = await staffRepositoryGetQuery.getAllStaffs()
+            const approvedStaff = staffs.filter(staff => staff.adminApproved)
+            const notApprovedStaff = staffs.filter(staff => !staff.adminApproved)
+
+            return { approvedStaff, notApprovedStaff }
         } catch (error) {
             throw new Error((error as Error).message)
         }
     },
 
-    getNotApprovedStaffs: async () => {
-        try {
-            return await staffRepositoryGetQuery.getNotApprovedStaffs()
-        } catch (error) {
-            throw new Error((error as Error).message)
-        }
-    },
 
-    approveStaff: async (staffId: ObjectId) => {
+    approveStaff: async (staffId: string) => {
         try {
             return await staffRepositoryUpdateQuery.approveTheStaff(staffId)
         } catch (error) {
@@ -27,7 +24,7 @@ export default {
         }
     },
 
-    blockUnblockStaff: async (staffId: ObjectId) => {
+    blockUnblockStaff: async (staffId: string) => {
         try {
             return await staffRepositoryUpdateQuery.blockUnblockStaff(staffId)
         } catch (error) {

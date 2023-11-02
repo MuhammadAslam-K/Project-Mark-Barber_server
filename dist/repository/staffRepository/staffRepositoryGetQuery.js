@@ -14,19 +14,9 @@ exports.default = {
             throw new Error(error.message);
         }
     },
-    getApprovedStaffs: async () => {
+    getAllStaffs: async () => {
         try {
-            const result = await staffEntite_1.default.find({ adminApproved: true });
-            return result ? result : false;
-        }
-        catch (error) {
-            throw new Error(error.message);
-        }
-    },
-    getNotApprovedStaffs: async () => {
-        try {
-            const result = await staffEntite_1.default.find({ adminApproved: false });
-            return result ? result : false;
+            return await staffEntite_1.default.find();
         }
         catch (error) {
             throw new Error(error.message);

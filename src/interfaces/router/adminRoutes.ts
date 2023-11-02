@@ -9,8 +9,7 @@ const admin_router = Express.Router()
 admin_router.post("/login", adminAuthController.login)
 
 // STAFF
-admin_router.get("/staffs/approved", adminStaffsController.getApprovedStaffs)
-admin_router.get("/staffs/notapproved", adminStaffsController.getNotApprovedStaffs)
+admin_router.get("/staffs/approved", adminStaffsController.getStaffs)
 
 admin_router.patch("/staff/approve", adminStaffsController.approveStaff)
 admin_router.patch("/staff/blockUnblock", adminStaffsController.blockUnblockStaff)

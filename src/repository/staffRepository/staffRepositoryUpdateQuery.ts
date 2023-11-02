@@ -2,7 +2,7 @@ import { ObjectId } from "mongoose";
 import StaffSchema from "../../entites/staffEntite";
 
 export default {
-    approveTheStaff: async (staffId: ObjectId) => {
+    approveTheStaff: async (staffId: string) => {
         try {
             return await StaffSchema.findByIdAndUpdate(
                 staffId,
@@ -14,7 +14,7 @@ export default {
         }
     },
 
-    blockUnblockStaff: async (staffId: ObjectId) => {
+    blockUnblockStaff: async (staffId: string) => {
         try {
             const staff = await StaffSchema.findById(staffId)
             if (staff) {
