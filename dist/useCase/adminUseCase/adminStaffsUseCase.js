@@ -6,17 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const staffRepositoryGetQuery_1 = __importDefault(require("../../repository/staffRepository/staffRepositoryGetQuery"));
 const staffRepositoryUpdateQuery_1 = __importDefault(require("../../repository/staffRepository/staffRepositoryUpdateQuery"));
 exports.default = {
-    getApprovedStaffs: async () => {
+    getStaffs: async () => {
         try {
-            return await staffRepositoryGetQuery_1.default.getApprovedStaffs();
-        }
-        catch (error) {
-            throw new Error(error.message);
-        }
-    },
-    getNotApprovedStaffs: async () => {
-        try {
-            return await staffRepositoryGetQuery_1.default.getNotApprovedStaffs();
+            const staffs = await staffRepositoryGetQuery_1.default.getAllStaffs();
+            const approvedStaff = staffs.filter(staff => staff.adminApproved);
+            const notApprovedStaff = staffs.filter(staff => !staff.adminApproved);
+            return { approvedStaff, notApprovedStaff };
         }
         catch (error) {
             throw new Error(error.message);

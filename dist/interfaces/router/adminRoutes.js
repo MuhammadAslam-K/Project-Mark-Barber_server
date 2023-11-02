@@ -10,8 +10,7 @@ const adminDashboardController_1 = __importDefault(require("../controllers/admin
 const admin_router = express_1.default.Router();
 admin_router.post("/login", adminAuthController_1.default.login);
 // STAFF
-admin_router.get("/staffs/approved", adminStaffsController_1.default.getApprovedStaffs);
-admin_router.get("/staffs/notapproved", adminStaffsController_1.default.getNotApprovedStaffs);
+admin_router.get("/staffs/approved", adminStaffsController_1.default.getStaffs);
 admin_router.patch("/staff/approve", adminStaffsController_1.default.approveStaff);
 admin_router.patch("/staff/blockUnblock", adminStaffsController_1.default.blockUnblockStaff);
 // DASHBOARD

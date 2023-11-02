@@ -11,23 +11,14 @@ export default {
         }
     },
 
-    getApprovedStaffs: async () => {
+    getAllStaffs: async () => {
         try {
-            const result = await StaffSchema.find({ adminApproved: true })
-            return result ? result : false
+            return await StaffSchema.find()
         } catch (error) {
             throw new Error((error as Error).message)
         }
     },
 
-    getNotApprovedStaffs: async () => {
-        try {
-            const result = await StaffSchema.find({ adminApproved: false })
-            return result ? result : false
-        } catch (error) {
-            throw new Error((error as Error).message)
-        }
-    },
 
     getTotalCount: async () => {
         try {
