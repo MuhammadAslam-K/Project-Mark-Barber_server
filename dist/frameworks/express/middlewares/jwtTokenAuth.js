@@ -13,6 +13,8 @@ exports.default = {
                 /**********  User **********/
                 "/saloan/nearest",
                 "/saloan/all",
+                "/personalServices/nearest",
+                "/personalServices/all",
                 /**********  Driver **********/
                 "/staff/login",
                 "/staff/signup",

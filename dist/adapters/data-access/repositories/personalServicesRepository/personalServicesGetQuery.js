@@ -3,30 +3,46 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const shope_model_1 = __importDefault(require("../../models/shope-model"));
+const personalServices_1 = __importDefault(require("../../models/personalServices"));
 exports.default = {
-    getTotalCount: async () => {
+    getPersonByMobile: async (mobile) => {
         try {
-            return await shope_model_1.default.find().count();
+            return await personalServices_1.default.findOne({ mobile: mobile });
         }
         catch (error) {
             throw new Error(error.message);
         }
     },
-    getShopWithStaffId: async (staffId) => {
+    getPersonByEmail: async (email) => {
         try {
-            return await shope_model_1.default.find({ staff_Id: staffId });
+            return await personalServices_1.default.findOne({ email: email });
         }
         catch (error) {
             throw new Error(error.message);
         }
     },
-    findNearestSalonByUserLatAndLong: async (latitude, longitude, radius) => {
+    getByStaffId: async (staff_Id) => {
+        try {
+            return await personalServices_1.default.find({ staff_Id: staff_Id });
+        }
+        catch (error) {
+            throw new Error(error.message);
+        }
+    },
+    getAllPersonalServices: async () => {
+        try {
+            return await personalServices_1.default.find();
+        }
+        catch (error) {
+            throw new Error(error.message);
+        }
+    },
+    findNearestpersonalServicesByUserLatAndLong: async (latitude, longitude, radius) => {
         try {
             if (isNaN(latitude) || isNaN(longitude)) {
                 throw new Error('Invalid latitude or longitude values');
             }
-            const nearbyShops = await shope_model_1.default.find({
+            const nearbyShops = await personalServices_1.default.find({
                 location: {
                     $near: {
                         $geometry: {
@@ -43,12 +59,4 @@ exports.default = {
             throw new Error(error.message);
         }
     },
-    getAllShopes: async () => {
-        try {
-            return shope_model_1.default.find();
-        }
-        catch (error) {
-            throw new Error(error.message);
-        }
-    }
 };

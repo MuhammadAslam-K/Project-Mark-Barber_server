@@ -19,6 +19,10 @@ const staffSchema: Schema = new Schema({
         type: Number,
         default: 0
     },
+    totalPersonalServices: {
+        type: Number,
+        default: 0
+    },
     adminApproved: {
         type: Boolean,
         default: false

@@ -25,17 +25,20 @@ exports.default = {
             throw new Error(error.message);
         }
     },
-    updateTotalSopNo: async (staffId) => {
+    updateTotalShope: async (staffId) => {
         try {
-            const staff = await staff_model_1.default.findById(staffId);
-            if (staff) {
-                const count = staff.totalShops;
-                staff.totalShops = count + 1;
-                return await staff.save();
-            }
+            return await staff_model_1.default.findByIdAndUpdate(staffId, { $inc: { totalShops: 1 } }, { new: true });
         }
         catch (error) {
             throw new Error(error.message);
         }
-    }
+    },
+    updateTotalPersonalServices: async (staffId) => {
+        try {
+            return await staff_model_1.default.findByIdAndUpdate(staffId, { $inc: { totalPersonalServices: 1 } }, { new: true });
+        }
+        catch (error) {
+            throw new Error(error.message);
+        }
+    },
 };

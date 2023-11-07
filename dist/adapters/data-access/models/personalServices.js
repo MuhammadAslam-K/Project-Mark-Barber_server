@@ -24,11 +24,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importStar(require("mongoose"));
-const shopeSchema = new mongoose_1.Schema({
-    shopeName: { type: String, required: true },
-    ownerName: { type: String, required: true },
-    ownerEmail: { type: String, required: true },
-    ownerMobile: { type: String, required: true },
+const personalServicesSchema = new mongoose_1.Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    mobile: { type: String, required: true },
+    gender: { type: String, required: true },
     location: {
         type: {
             type: String,
@@ -40,7 +40,7 @@ const shopeSchema = new mongoose_1.Schema({
             required: true,
         },
     },
-    shopeLocation: { type: String, required: true },
+    personalLocation: { type: String, required: true },
     services: { type: String, required: true },
     images: [{ type: String, required: true }],
     listedDate: { type: Date, default: Date.now },
@@ -51,6 +51,6 @@ const shopeSchema = new mongoose_1.Schema({
     },
     // staff_Id: { type: String, required: true }
 });
-shopeSchema.index({ location: "2dsphere" });
-const ShopeSchema = mongoose_1.default.model("shope", shopeSchema);
-exports.default = ShopeSchema;
+personalServicesSchema.index({ location: "2dsphere" });
+const PersonalServicesSchema = mongoose_1.default.model("personalServices", personalServicesSchema);
+exports.default = PersonalServicesSchema;

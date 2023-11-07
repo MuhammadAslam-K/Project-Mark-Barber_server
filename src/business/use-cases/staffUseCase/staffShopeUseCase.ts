@@ -9,7 +9,7 @@ export default {
         try {
             await Promise.all([
                 shopeRepositorySaveQuery.saveNewShop(data, staffId),
-                staffRepositoryUpdateQuery.updateTotalSopNo(staffId)
+                staffRepositoryUpdateQuery.updateTotalShope(staffId)
             ])
         } catch (error) {
             throw new Error((error as Error).message)

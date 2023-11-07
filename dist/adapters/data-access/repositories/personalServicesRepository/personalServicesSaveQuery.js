@@ -3,24 +3,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const shope_model_1 = __importDefault(require("../../models/shope-model"));
+const personalServices_1 = __importDefault(require("../../models/personalServices"));
 exports.default = {
-    saveNewShop: async (data, staff_Id) => {
+    addNewPersonalService: async (data, staff_Id) => {
         console.log("data", data);
         try {
-            const shop = new shope_model_1.default({
+            const person = new personalServices_1.default({
                 ...data,
+                personalLocation: data.location,
                 location: {
                     type: 'Point',
-                    coordinates: [data.shoplongitude, data.shoplatitude],
+                    coordinates: [data.personLongitude, data.personLatitude],
                 },
                 images: [data.Image1, data.Image2, data.Image3, data.Image4],
                 staff_Id,
             });
-            await shop.save();
+            return await person.save();
         }
         catch (error) {
-            console.log(error);
             throw new Error(error.message);
         }
     }

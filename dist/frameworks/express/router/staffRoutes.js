@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const staffAuthController_1 = __importDefault(require("../../../adapters/controllers/staff/staffAuthController"));
 const staffShopController_1 = __importDefault(require("../../../adapters/controllers/staff/staffShopController"));
 const staffDashboardController_1 = __importDefault(require("../../../adapters/controllers/staff/staffDashboardController"));
+const staffPersonalServices_1 = __importDefault(require("../../../adapters/controllers/staff/staffPersonalServices"));
 const staff_router = express_1.default.Router();
 staff_router.post("/login", staffAuthController_1.default.login);
 staff_router.post("/signup", staffAuthController_1.default.signUp);
@@ -15,4 +16,7 @@ staff_router.get("/dashboard", staffDashboardController_1.default.getDashboardDa
 // SHOPE
 staff_router.post("/shop/add", staffShopController_1.default.addNewShop);
 staff_router.get("/shopeDetails", staffShopController_1.default.getShopeDetails);
+// PESRSONAL-SERVICE
+staff_router.post("/personalService/add", staffPersonalServices_1.default.addNewPersonalService);
+staff_router.get("/personalServiceDetails", staffPersonalServices_1.default.getPersonalServices);
 exports.default = staff_router;

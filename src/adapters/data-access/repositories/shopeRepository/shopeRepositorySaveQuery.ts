@@ -4,6 +4,7 @@ import { ShopData } from "../../../../business/interfaces/StaffInterfaces";
 
 export default {
     saveNewShop: async (data: ShopData, staff_Id: ObjectId) => {
+        console.log("data", data)
         try {
             const shop = new ShopeSchema({
                 ...data,
@@ -16,6 +17,7 @@ export default {
             });
             await shop.save();
         } catch (error) {
+            console.log(error)
             throw new Error((error as Error).message);
         }
     }
