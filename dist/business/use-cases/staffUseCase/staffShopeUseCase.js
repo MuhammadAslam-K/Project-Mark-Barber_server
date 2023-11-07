@@ -11,7 +11,7 @@ exports.default = {
         try {
             await Promise.all([
                 shopeRepositorySaveQuery_1.default.saveNewShop(data, staffId),
-                staffRepositoryUpdateQuery_1.default.updateTotalSopNo(staffId)
+                staffRepositoryUpdateQuery_1.default.updateTotalShope(staffId)
             ]);
         }
         catch (error) {

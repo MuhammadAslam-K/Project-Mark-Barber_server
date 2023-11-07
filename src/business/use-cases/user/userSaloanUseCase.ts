@@ -9,7 +9,7 @@ export default {
             const MetersPerKilometer = 1000;
             const radius = 10 * MetersPerKilometer;
 
-            return await shopeRepositoryGetQuery.findNearestByUserLatAndLong(latitude, longitude, radius)
+            return await shopeRepositoryGetQuery.findNearestSalonByUserLatAndLong(latitude, longitude, radius)
         } catch (error) {
             throw new Error((error as Error).message)
         }
