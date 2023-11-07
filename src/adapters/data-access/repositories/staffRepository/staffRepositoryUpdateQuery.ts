@@ -26,18 +26,27 @@ export default {
         }
     },
 
-    updateTotalSopNo: async (staffId: ObjectId) => {
+    updateTotalShope: async (staffId: ObjectId) => {
         try {
-            const staff = await StaffSchema.findById(staffId)
-            if (staff) {
-                const count = staff.totalShops
-                staff.totalShops = count + 1
-                return await staff.save()
-            }
-
-
+            return await StaffSchema.findByIdAndUpdate(
+                staffId,
+                { $inc: { totalShops: 1 } },
+                { new: true }
+            );
         } catch (error) {
             throw new Error((error as Error).message);
         }
-    }
+    },
+
+    updateTotalPersonalServices: async (staffId: string) => {
+        try {
+            return await StaffSchema.findByIdAndUpdate(
+                staffId,
+                { $inc: { totalPersonalServices: 1 } },
+                { new: true }
+            );
+        } catch (error) {
+            throw new Error((error as Error).message);
+        }
+    },
 }

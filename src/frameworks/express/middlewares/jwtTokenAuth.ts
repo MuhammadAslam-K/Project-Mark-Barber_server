@@ -12,6 +12,9 @@ export default {
                 /**********  User **********/
                 "/saloan/nearest",
                 "/saloan/all",
+                "/personalServices/nearest",
+                "/personalServices/all",
+
                 /**********  Driver **********/
                 "/staff/login",
                 "/staff/signup",
@@ -40,7 +43,6 @@ export default {
                 req.token = decodedToken
                 next();
             } else if (decodedToken.role === 'staff') {
-
                 req.token = decodedToken
                 next();
             }

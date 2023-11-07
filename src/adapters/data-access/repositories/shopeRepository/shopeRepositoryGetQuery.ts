@@ -19,7 +19,7 @@ export default {
         }
     },
 
-    findNearestByUserLatAndLong: async (latitude: number, longitude: number, radius: number) => {
+    findNearestSalonByUserLatAndLong: async (latitude: number, longitude: number, radius: number) => {
         try {
             if (isNaN(latitude) || isNaN(longitude)) {
                 throw new Error('Invalid latitude or longitude values');

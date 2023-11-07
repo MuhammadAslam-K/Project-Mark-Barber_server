@@ -1,10 +1,10 @@
 import mongoose, { Schema } from "mongoose";
 
-const shopeSchema: Schema = new Schema({
-    shopeName: { type: String, required: true },
-    ownerName: { type: String, required: true },
-    ownerEmail: { type: String, required: true },
-    ownerMobile: { type: String, required: true },
+const personalServicesSchema: Schema = new Schema({
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    mobile: { type: String, required: true },
+    gender: { type: String, required: true },
     location: {
         type: {
             type: String,
@@ -16,7 +16,7 @@ const shopeSchema: Schema = new Schema({
             required: true,
         },
     },
-    shopeLocation: { type: String, required: true },
+    personalLocation: { type: String, required: true },
     services: { type: String, required: true },
     images: [{ type: String, required: true }],
     listedDate: { type: Date, default: Date.now },
@@ -30,8 +30,8 @@ const shopeSchema: Schema = new Schema({
 });
 
 
-shopeSchema.index({ location: "2dsphere" });
+personalServicesSchema.index({ location: "2dsphere" });
 
-const ShopeSchema = mongoose.model("shope", shopeSchema);
+const PersonalServicesSchema = mongoose.model("personalServices", personalServicesSchema);
 
-export default ShopeSchema;
+export default PersonalServicesSchema;
