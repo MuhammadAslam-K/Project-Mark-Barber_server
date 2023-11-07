@@ -3,14 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const shopeRepositoryGetQuery_1 = __importDefault(require("../../repository/shopeRepository/shopeRepositoryGetQuery"));
+const shopeRepositoryGetQuery_1 = __importDefault(require("../../adapters/data-access/repositories/shopeRepository/shopeRepositoryGetQuery"));
 exports.default = {
     getNearbySaloan: async (data) => {
         try {
             const longitude = parseFloat(data.longitude);
             const latitude = parseFloat(data.latitude);
             const MetersPerKilometer = 1000;
-            const radius = 1 * MetersPerKilometer;
+            const radius = 10 * MetersPerKilometer;
             return await shopeRepositoryGetQuery_1.default.findNearestByUserLatAndLong(latitude, longitude, radius);
         }
         catch (error) {

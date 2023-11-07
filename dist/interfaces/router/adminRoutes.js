@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const adminAuthController_1 = __importDefault(require("../controllers/admin/adminAuthController"));
-const adminStaffsController_1 = __importDefault(require("../controllers/admin/adminStaffsController"));
-const adminDashboardController_1 = __importDefault(require("../controllers/admin/adminDashboardController"));
+const adminAuthController_1 = __importDefault(require("../../adapters/controllers/admin/adminAuthController"));
+const adminStaffsController_1 = __importDefault(require("../../adapters/controllers/admin/adminStaffsController"));
+const adminDashboardController_1 = __importDefault(require("../../adapters/controllers/admin/adminDashboardController"));
 const admin_router = express_1.default.Router();
 admin_router.post("/login", adminAuthController_1.default.login);
 // STAFF

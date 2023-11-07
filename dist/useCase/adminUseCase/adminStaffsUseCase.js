@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const staffRepositoryGetQuery_1 = __importDefault(require("../../repository/staffRepository/staffRepositoryGetQuery"));
-const staffRepositoryUpdateQuery_1 = __importDefault(require("../../repository/staffRepository/staffRepositoryUpdateQuery"));
+const staffRepositoryGetQuery_1 = __importDefault(require("../../adapters/data-access/repositories/staffRepository/staffRepositoryGetQuery"));
+const staffRepositoryUpdateQuery_1 = __importDefault(require("../../adapters/data-access/repositories/staffRepository/staffRepositoryUpdateQuery"));
 exports.default = {
     getStaffs: async () => {
         try {
