@@ -10,7 +10,7 @@ exports.default = {
             const longitude = parseFloat(data.longitude);
             const latitude = parseFloat(data.latitude);
             const MetersPerKilometer = 1000;
-            const radius = 10 * MetersPerKilometer;
+            const radius = 100 * MetersPerKilometer;
             return await personalServicesGetQuery_1.default.findNearestpersonalServicesByUserLatAndLong(latitude, longitude, radius);
         }
         catch (error) {

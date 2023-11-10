@@ -7,7 +7,7 @@ export default {
             const latitude = parseFloat(data.latitude);
 
             const MetersPerKilometer = 1000;
-            const radius = 10 * MetersPerKilometer;
+            const radius = 100 * MetersPerKilometer;
 
             return await shopeRepositoryGetQuery.findNearestSalonByUserLatAndLong(latitude, longitude, radius)
         } catch (error) {
