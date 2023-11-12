@@ -58,3 +58,4 @@ if (MONGO_URL) {
 else {
     console.log('Cannot access the URL from environment');
 }
+exports.default = app;
