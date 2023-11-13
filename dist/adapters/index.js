@@ -38,10 +38,9 @@ dotenv.config();
 const port = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 const app = (0, express_1.default)();
-// app.use(cors());
 app.use(express_1.default.json({ limit: '10mb' }));
 app.use((0, cors_1.default)({
-    origin: '*',
+    origin: 'https://markbarber.in',
     credentials: true,
 }));
 app.use(jwtTokenAuth_1.default.validateToken);
@@ -58,4 +57,3 @@ if (MONGO_URL) {
 else {
     console.log('Cannot access the URL from environment');
 }
-exports.default = app;
