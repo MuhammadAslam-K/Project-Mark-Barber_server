@@ -5,8 +5,8 @@ export default {
     getStaffs: async () => {
         try {
             const staffs = await staffRepositoryGetQuery.getAllStaffs()
-            const approvedStaff = staffs.filter((staff) => staff.adminApproved)
-            const notApprovedStaff = staffs.filter((staff) => !staff.adminApproved)
+            const approvedStaff = staffs.filter((staff: any) => staff.adminApproved)
+            const notApprovedStaff = staffs.filter((staff: any) => !staff.adminApproved)
 
             return { approvedStaff, notApprovedStaff }
         } catch (error) {

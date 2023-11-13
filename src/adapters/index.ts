@@ -1,6 +1,7 @@
 import Express from 'express';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
+import * as functions from "firebase-functions"
 
 
 import connect from '../frameworks/database/mongoDB';
@@ -15,14 +16,12 @@ dotenv.config();
 const port = process.env.PORT;
 const MONGO_URL = process.env.MONGO_URL;
 const app = Express();
-// app.use(cors());
 app.use(Express.json({ limit: '10mb' }));
 
 app.use(cors({
-    origin: '*',
+    origin: 'https://markbarber.in',
     credentials: true,
-}));
-
+}))
 
 app.use(jwtTokenAuth.validateToken);
 
@@ -40,5 +39,3 @@ if (MONGO_URL) {
 } else {
     console.log('Cannot access the URL from environment');
 }
-
-export default app
