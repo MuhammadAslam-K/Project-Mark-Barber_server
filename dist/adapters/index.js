@@ -35,8 +35,10 @@ const staffRoutes_1 = __importDefault(require("../frameworks/express/router/staf
 const adminRoutes_1 = __importDefault(require("../frameworks/express/router/adminRoutes"));
 const userRoutes_1 = __importDefault(require("../frameworks/express/router/userRoutes"));
 dotenv.config();
-const port = process.env.PORT;
-const MONGO_URL = process.env.MONGO_URL;
+// const port = process.env.PORT;
+const port = 8000;
+// const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL = "mongodb+srv://markbarbercoin:markbarber@cluster0.cmxse7y.mongodb.net/markbarber?retryWrites=true&w=majority";
 const app = (0, express_1.default)();
 app.use(express_1.default.json({ limit: '10mb' }));
 app.use((0, cors_1.default)({

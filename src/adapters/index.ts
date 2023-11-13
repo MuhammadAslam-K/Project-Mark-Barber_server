@@ -13,8 +13,10 @@ import user_route from '../frameworks/express/router/userRoutes';
 
 dotenv.config();
 
-const port = process.env.PORT;
-const MONGO_URL = process.env.MONGO_URL;
+// const port = process.env.PORT;
+const port = 8000
+// const MONGO_URL = process.env.MONGO_URL;
+const MONGO_URL ="mongodb+srv://markbarbercoin:markbarber@cluster0.cmxse7y.mongodb.net/markbarber?retryWrites=true&w=majority"
 const app = Express();
 app.use(Express.json({ limit: '10mb' }));
 

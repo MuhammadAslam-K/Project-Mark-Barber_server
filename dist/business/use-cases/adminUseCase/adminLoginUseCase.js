@@ -32,8 +32,10 @@ dotenv.config();
 exports.default = {
     validateAdmin: async (data) => {
         try {
-            const adminEmail = process.env.ADMIN_EMAIL;
-            const adminPassword = process.env.ADMIN_PASSWORD;
+            // const adminEmail = process.env.ADMIN_EMAIL
+            const adminEmail = "markbarber.co.in@gmail.com";
+            // const adminPassword = process.env.ADMIN_PASSWORD
+            const adminPassword = "Markbarber1998";
             if (data.email == adminEmail && data.password == adminPassword) {
                 const token = encriptionDecription_1.default.createToken(data.email, "admin", "5h");
                 return token;
